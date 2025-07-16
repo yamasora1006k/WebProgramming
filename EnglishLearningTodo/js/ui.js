@@ -1,5 +1,3 @@
-// ui.js
-
 export class UIManager {
     constructor(app) {
         this.app = app;
