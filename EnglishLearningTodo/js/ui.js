@@ -126,6 +126,7 @@ export class UIManager {
     }
 
     showStatsModal() {
+        this.elements.timeModal.classList.add('hidden');
         this.elements.statsModal.classList.remove('hidden');
     }
 
