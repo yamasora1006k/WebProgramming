@@ -1,5 +1,3 @@
-// timer.js
-
 export class TimerManager {
     constructor(taskManager) {
         this.taskManager = taskManager;
@@ -72,6 +70,6 @@ export class TimerManager {
         this.taskTitleElement.textContent = title;
         this.seconds = 0;
         this.updateDisplay();
-        document.getElementById('timeModal').classList.remove('hidden');
+        document.getElementById('timeModal').classList.remove('hidden');  
     }
 }
