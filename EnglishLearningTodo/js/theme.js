@@ -28,7 +28,7 @@ export class ThemeManager {
         }
     }
 
-    toggleTheme() {
+    toggle() {
         const body = document.body;
         const isDark = body.classList.contains('dark');
 
