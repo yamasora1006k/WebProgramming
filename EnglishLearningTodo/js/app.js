@@ -44,16 +44,19 @@ class EnglishLearningTodo {
 
         // 統計表示
         this.ui.onShowStats(() => {
-            this.ui.hideTimeModal();
-            this.stats.updateStats(this.taskManager.getAllTasks());
+            // 統計データを更新
+            const statsData = this.stats.updateStats(this.taskManager.getAllTasks());
+            // 統計モーダルを表示
             this.ui.showStatsModal();
+            // デバッグ出力
+            console.log('統計データ:', statsData);
         });
 
         // タイマー操作
         this.ui.onStartTimer(() => {
             const firstTask = this.taskManager.getAllTasks()[0];
             if (firstTask) {
-                console.log("Start Timer for:", firstTask.title);  // ← デバッグ出力
+                console.log("Start Timer for:", firstTask.title); 
                 this.timer.setCurrentTask(firstTask.id, firstTask.title);
             } else {
                 alert('タスクがありません。先にタスクを追加してください。');
