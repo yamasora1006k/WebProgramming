@@ -124,7 +124,9 @@ export class UIManager {
     }
 
     showStatsModal() {
-        this.elements.timeModal.classList.add('hidden');
+        // タイマーモーダルを閉じる
+        document.getElementById('timeModal').classList.add('hidden');
+        // 統計モーダルを表示
         this.elements.statsModal.classList.remove('hidden');
     }
 
