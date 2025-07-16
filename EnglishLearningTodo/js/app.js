@@ -59,4 +59,6 @@ class EnglishLearningTodo {
     }
 }
 
-window.app = new EnglishLearningTodo();
+document.addEventListener('DOMContentLoaded', () => {
+    window.app = new EnglishLearningTodo();
+});
