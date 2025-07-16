@@ -1,0 +1,196 @@
+/* styles.css */
+
+/* ダークモード背景／文字色 */
+.dark {
+    --tw-bg-opacity: 1;
+    background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+    color: rgb(229 231 235);
+}
+
+/* タスク優先度の左罫線カラー */
+.priority-high { border-left: 4px solid #ef4444; }
+.priority-medium { border-left: 4px solid #f59e0b; }
+.priority-low { border-left: 4px solid #10b981; }
+
+/* カテゴリバッジ */
+.category-vocabulary { background-color: #f3e8ff; color: #6b21a8; }
+.category-grammar    { background-color: #dbEAFE; color: #1e3a8a; }
+.category-listening  { background-color: #dcfce7; color: #065f46; }
+.category-speaking   { background-color: #ffedd5; color: #c2410c; }
+.category-reading    { background-color: #fee2e2; color: #991b1b; }
+.category-writing    { background-color: #e0e7ff; color: #4338ca; }
+
+/* ダークモード時のカテゴリバッジ */
+.dark .category-vocabulary { background-color: #4c1d95; color: #e9d5ff; }
+.dark .category-grammar    { background-color: #1e3a8a; color: #bfdbfe; }
+.dark .category-listening  { background-color: #065f46; color: #d1fae5; }
+.dark .category-speaking   { background-color: #c2410c; color: #fed7aa; }
+.dark .category-reading    { background-color: #991b1b; color: #fecaca; }
+.dark .category-writing    { background-color: #4338ca; color: #c7d2fe; }
+
+/* フェードインアニメーション */
+/* .fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+} */
+
+/* ダークモードで本文の背景とテキストをオーバーライドする */
+html.dark body {
+  background-color: rgb(17 24 39) !important;
+  color: rgb(0, 51, 154) !important;
+}
+
+/* ダークモードで背景をオーバーライドする */
+html.dark .bg-white {
+  background-color: rgb(31 41 55) !important; /* Tailwind gray-800 */
+}
+html.dark .bg-gray-50 {
+  background-color: rgb(17 24 39) !important; /* Tailwind gray-900 */
+}
+
+.dark .bg-gray-50 {
+  background-color: #f5f3ff00;
+}
+
+.dark .text-gray-900 {
+    color: rgb(255, 255, 255) !important;
+}
+
+.dark .bg-white {
+  background-color: #1F2937 !important;
+}
+
+.dark .bg-gray-100 {
+  background-color: rgb(36 99 235) !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+/* キャンセルボタン通常モードのホバー */
+.cancelBtn:hover {
+  color: #c3cde090 !important;  /* gray-400 */
+}
+
+/* スクロール可能なモーダルコンテンツ */
+.stats-modal-content {
+    max-height: 80vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 1rem;
+}
+
+/* スクロールバーのスタイリング */
+.stats-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.stats-modal-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.stats-modal-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.stats-modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* ダークモード検知 */
+.cancelBtn:hover {
+  color: #6B7280 !important;  /* gray-500 */
+}
+
+/* タスク統計カード */
+.task-stats-card {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.task-stats-card i {
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+  transition: color 0.3s ease;
+}
+
+.task-stats-card .label {
+  font-size: 0.875rem;
+  color: #000000;
+  transition: color 0.3s ease;
+}
+
+.task-stats-card .value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1F2937;
+  transition: color 0.3s ease;
+}
+
+/* ダークモードのスタイル */
+.dark .task-stats-card {
+  background-color: #1F2937;
+}
+
+.dark .task-stats-card i {
+  color: #93C5FD;
+}
+
+.dark .task-stats-card .label {
+  color: #D1D5DB;
+}
+
+.dark .task-stats-card .value {
+  color: #FFFFFF;
+}
+
+/* カラーバリエーション */
+.task-stats-card.blue {
+  background-color: #F0F9FF;
+}
+.task-stats-card.green {
+  background-color: #F0FDF4;
+}
+.task-stats-card.yellow {
+  background-color: #FEF3C7;
+}
+.task-stats-card.purple {
+  background-color: #F5F3FF;
+}
+
+.dark .task-stats-card.blue {
+  /* background-color: #1F2937; */
+  background-color: #f0f9ff00;
+}
+.dark .task-stats-card.green {
+  background-color: #f0fdf400;
+}
+.dark .task-stats-card.yellow {
+  background-color: #fef3c700;
+}
+.dark .task-stats-card.purple {
+  background-color: #f5f3ff00;
+}
+
+.dark .text-gray-700 {
+  color: #fff;
+}
+
+.dark .category-vocabulary {
+    color: #fff;
+}
+
+.dark .text-gray-700 {
+  color: #fff;
+}
+.dark .category-vocabulary {
+    color: #fff;
+}
+
+.dark .text-gray-900 {
+  color: #ffffff !important;
+}

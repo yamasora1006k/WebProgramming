@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Learning ToDo</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiRW5nbGlzaCBMZWFybmluZyBUb0RvIiwic2hvcnRfbmFtZSI6IkVuZ2xpc2hUb0RvIiwic3RhcnRfdXJsIjoiLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwidGhlbWVfY29sb3IiOiIjNDE5NGY3IiwiYmFja2dyb3VuZF9jb2xvciI6IiNmZmZmZmYiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOHpkbWNpSUhacFpYZENiM2c5SWpBZ01DQXhNakkzSURFeU1qY2lJR2hwWjJoMFBTSXhNakkySWlCM2FXUjBhRDBpTVRJeU5pSWdabWxzYkQwaWJtOXVaU0krUEdGeWNtRjVJRzUxYlMxamIyeDJiVzV6UFNJeElpQmtQU0pOTkRVM0xqZ3lJRGt6TlM0eE4yTXROamN1T1Rjc01qZ3VPVGt0TVRJeUxqTXpMakF4VFRJeE1TNHlPU0EwTnpRdU5qRmpOamN1T1Rjc01qZ3VPVGt0TVRJeUxqTXpMakF4VFRZeE5pNHdNU0E0TkRNdU5qWmpOamN1T1Rjc01qZ3VPVGt0TVRJeUxqTXpMakF4VFRFeE1Ea3VNVGNnTlRVMkxqSTNZelkzTGprM0xESTRMamswTFRFeU1pNHpNeUE0TkMxeElpQm1hV3hzUFNJak5ERTVORVkzSWo0OEwyRnljbUY1UGp3dmMzWm5QZz09IiwicHVycG9zZSI6Im1hc2thYmxlIiwic2l6ZXMiOiI1MTJ4NTEyIn1dfQ==">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="manifest" href="manifest.json" />
+
+
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <div id="app" class="min-h-screen">
+        <header class="bg-white dark:bg-gray-800 shadow-sm border-b dark:border-gray-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center py-4">
+                    <div class="flex items-center space-x-4">
+                        <i class="fas fa-graduation-cap text-2xl text-blue-600 dark:text-blue-400"></i>
+                        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">English Learning ToDo</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button id="themeToggle" class="cancelBtn p-2 rounded-lg bg-gray-100 dark:bg-gray-700 transition-colors">
+                            <i class="fas fa-moon dark:hidden"></i>
+                            <i class="fas fa-sun hidden dark:block"></i>
+                          </button>                          
+                        <button id="statsBtn" class="p-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors">
+                            <i class="fas fa-chart-bar"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+          
+
+        
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-6">
+                <div class="flex flex-wrap gap-4 items-center justify-between">
+                    <div class="flex flex-wrap gap-4 items-center">
+                        <button id="addTaskBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            <i class="fas fa-plus mr-2"></i>新しいタスク
+                        </button>
+                        <div class="relative">
+                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <input id="searchInput" type="text" placeholder="タスクを検索..." class="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <select id="categoryFilter" class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                            <option value="">全カテゴリ</option>
+                            <option value="vocabulary">語彙</option>
+                            <option value="grammar">文法</option>
+                            <option value="listening">リスニング</option>
+                            <option value="speaking">スピーキング</option>
+                            <option value="reading">リーディング</option>
+                            <option value="writing">ライティング</option>
+                        </select>
+                        <select id="priorityFilter" class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                            <option value="">全優先度</option>
+                            <option value="high">高</option>
+                            <option value="medium">中</option>
+                            <option value="low">低</option>
+                        </select>
+                        <select id="statusFilter" class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                            <option value="">全ステータス</option>
+                            <option value="pending">未完了</option>
+                            <option value="completed">完了</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="taskList" class="space-y-4">
+            </div>
+            <div id="emptyState" class="text-center py-12 hidden">
+                <i class="fas fa-book-open text-6xl text-gray-300 dark:text-gray-600 mb-4"></i>
+                <h3 class="text-xl text-gray-500 dark:text-gray-400 mb-2">まだタスクがありません</h3>
+                <p class="text-gray-400 dark:text-gray-500">新しい英語学習タスクを追加して始めましょう！</p>
+            </div>
+        </main>
+
+        <div id="taskModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+            <div class="flex items-center justify-center min-h-screen p-4">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 id="modalTitle" class="text-lg font-semibold text-gray-900 dark:text-white">新しいタスク</h3>
+                            <button id="closeModal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <form id="taskForm" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">タイトル</label>
+                                <input id="taskTitle" type="text" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">説明</label>
+                                <textarea id="taskDescription" rows="3" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"></textarea>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">カテゴリ</label>
+                                    <select id="taskCategory" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                                        <option value="vocabulary">語彙</option>
+                                        <option value="grammar">文法</option>
+                                        <option value="listening">リスニング</option>
+                                        <option value="speaking">スピーキング</option>
+                                        <option value="reading">リーディング</option>
+                                        <option value="writing">ライティング</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">優先度</label>
+                                    <select id="taskPriority" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                                        <option value="low">低</option>
+                                        <option value="medium">中</option>
+                                        <option value="high">高</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">期限</label>
+                                    <input id="taskDueDate" type="date" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">予定学習時間(分)</label>
+                                    <input id="taskEstimatedTime" type="number" min="1" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                                </div>
+                            </div>
+                            <div class="flex justify-end space-x-3 pt-4">
+                                <button type="button" id="cancelBtn" class="cancelBtn px-4 py-2 text-gray-600 dark:text-gray-400">キャンセル</button>
+                                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">保存</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="statsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+            <div class="flex items-center justify-center min-h-screen p-4">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">学習統計</h3>
+                            <button id="closeStatsModal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <!-- ポップアップのスクロール -->
+                        <div class="stats-modal-content">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                            <div class="task-stats-card blue">
+                                <div class="flex items-center">
+                                    <i class="fas fa-tasks"></i>
+                                    <div>
+                                        <p class="label">総タスク数</p>
+                                        <p id="totalTasks" class="value">0</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-stats-card green">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle"></i>
+                                    <div>
+                                        <p class="label">完了タスク</p>
+                                        <p id="completedTasks" class="value">0</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-stats-card yellow">
+                                <div class="flex items-center">
+                                    <i class="fas fa-clock"></i>
+                                    <div>
+                                        <p class="label">総学習時間</p>
+                                        <p id="totalStudyTime" class="value">0分</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-stats-card purple">
+                                <div class="flex items-center">
+                                    <i class="fas fa-percentage"></i>
+                                    <div>
+                                        <p class="label">完了率</p>
+                                        <p id="completionRate" class="value">0%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
+                                <h4 class="text-lg font-medium text-gray-900 dark:text-white mb-4">カテゴリ別タスク数</h4>
+                                <div style="height: 300px;">
+                                    <canvas id="categoryChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
+                                <h4 class="text-lg font-medium text-gray-900 dark:text-white mb-4">優先度別分布</h4>
+                                <div style="height: 300px;">
+                                    <canvas id="priorityChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="timeModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+            <div class="flex items-center justify-center min-h-screen p-4">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">学習時間記録</h3>
+                            <button id="closeTimeModal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="text-center mb-6">
+                            <div id="timerDisplay" class="text-4xl font-mono font-bold text-blue-600 dark:text-blue-400 mb-4">00:00:00</div>
+                            <p id="currentTaskTitle" class="text-gray-600 dark:text-gray-400 mb-4"></p>
+                        </div>
+                        <div class="flex justify-center space-x-4">
+                            <button id="startTimer" class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                                <i class="fas fa-play mr-2"></i>開始
+                            </button>
+                            <button id="pauseTimer" class="px-6 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors hidden">
+                                <i class="fas fa-pause mr-2"></i>一時停止
+                            </button>
+                            <button id="stopTimer" class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                                <i class="fas fa-stop mr-2"></i>停止
+                            </button>
+                        </div>
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">手動で時間を追加 (分)</label>
+                            <div class="flex space-x-2">
+                                <input id="manualTime" type="number" min="1" class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                                <button id="addManualTime" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">追加</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="../js/app.js"></script>
+</body>
+</html>
