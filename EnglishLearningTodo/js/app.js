@@ -44,12 +44,22 @@ class EnglishLearningTodo {
 
         // 統計表示
         this.ui.onShowStats(() => {
+            this.ui.hideTimeModal();
             this.stats.updateStats(this.taskManager.getAllTasks());
             this.ui.showStatsModal();
         });
 
         // タイマー操作
-        this.ui.onStartTimer(() => this.timer.start());
+        this.ui.onStartTimer(() => {
+            const firstTask = this.taskManager.getAllTasks()[0];
+            if (firstTask) {
+                console.log("Start Timer for:", firstTask.title);  // ← デバッグ出力
+                this.timer.setCurrentTask(firstTask.id, firstTask.title);
+            } else {
+                alert('タスクがありません。先にタスクを追加してください。');
+            }
+        });
+        
         this.ui.onPauseTimer(() => this.timer.pause());
         this.ui.onStopTimer(() => this.timer.stop());
         this.ui.onAddManualTime((minutes) => this.timer.addManualTime(minutes));
@@ -59,6 +69,9 @@ class EnglishLearningTodo {
     }
 }
 
+// window.app = new EnglishLearningTodo();
+
 document.addEventListener('DOMContentLoaded', () => {
     window.app = new EnglishLearningTodo();
 });
+
